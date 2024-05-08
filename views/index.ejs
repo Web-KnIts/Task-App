@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!-- <%= 2+2%>  =  way to perform calulation Dynamically-->
+<body>
+    <div class="main w-full min-h-screen bg-zinc-900">
+        <div class="form p-10">
+            <form action="/create" method="post" class="text-white">
+                <input type="text" placeholder="Title Goes" name="title" class="block px-5 py-2 rounded-md w-full bg-zinc-800">
+                <textarea placeholder="Write Your Task Details" name="details" class="block mt-2 px-5 py-2 w-full rounded-md resize-none bg-zinc-800"></textarea>
+                <input type="submit" value="create-task" class="mt-2 bg-blue-600 px-5 py-2 rounded-md">
+            </form>
+        </div>
+        <div class="tasks p-10 flex gap-5 flex-wrap">
+            <% if(files.length > 0){ %>
+                <% files.forEach(function(val){%>
+                    <div class="task min-w-72 px-3 py-4 bg-zinc-800">
+                        <h1 class="text-white text-2xl tracking-tighter"><%= val %></h1>
+                        <a href="/files/<%= val %>" class="text-blue-500 inline-block mt-3 mr-5">read more...</a>
+                        <a href="/edit/<%= val %>" class="text-yellow-500 inline-block mt-3 mr-5">edit filename</a>
+                        <a href="/delete/<%= val %>" class="p-4 rounded-[10px] text-red-500" >Delete </a>
+                    </div>
+                <% }) %>
+            <% } else { %> 
+                <h3 class="text-zinc-600">No Tasks to view</h3>
+             <%} %>
+        </div>
+    </div>
+</body>
+</html>
